@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/learn-nextjs.iml" filepath="$PROJECT_DIR$/.idea/learn-nextjs.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/learn-next.iml" filepath="$PROJECT_DIR$/.idea/learn-next.iml" />
+>>>>>>> 26ee6d0d76e46550b01ee421bef20b0624f3561b
     </modules>
   </component>
 </project>
