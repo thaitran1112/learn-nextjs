@@ -23,7 +23,7 @@ const Home: NextPage = () => {
           Get started by editing <code className={styles.code}>pages/index.tsx</code>
         </p>
 
-       <Link href=''><a>Go to about</a></Link>
+       <Link href='/about'><a>Go to about</a></Link>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
