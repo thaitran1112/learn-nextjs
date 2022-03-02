@@ -24,8 +24,6 @@ export default function PostListPage({ posts }: PostListPageProps){
       </ul>
     </div>
   )
-
-
 }
 
 
