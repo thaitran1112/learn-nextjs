@@ -1,6 +1,7 @@
 import React from 'react';
 import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
+import Link from 'next/Link';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 
 export interface PostPageProps {
@@ -19,21 +20,22 @@ export default function PostListPage({ posts }: PostListPageProps){
       <h1>Post List Page</h1>
       <ul>
         {_isArray(posts) && _map(posts, post => (
-           <li key={post.id}>{post?.title}</li>
+           <li key={post.id}>
+             <Link href={`/posts/${post.id}`}><a>{post?.title}</a></Link>
+           </li>
         ))}
       </ul>
     </div>
   )
 }
 
-
 export const getStaticProps: GetStaticProps<PostListPageProps> = async (context: GetStaticPropsContext) => {
   const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-  const posts = await res.json();
+  const data = await res.json();
 
   return {
     props: {
-      posts: [...posts]
+      posts: [...data]
     },
   }
 }
