@@ -1,14 +1,18 @@
 import React from 'react';
 import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
+import _get from 'lodash/get';
 import Link from 'next/Link';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 
 export interface PostPageProps {
-  userId: number;
-  id: number;
+  id: string;
   title: string;
-  body: string;
+  author: string;
+  description: string;
+  createdAt: number;
+  updatedAt: number;
+  imageUrl: string;
 }
 export interface PostListPageProps {
   posts: PostPageProps[];
@@ -20,8 +24,8 @@ export default function PostListPage({ posts }: PostListPageProps){
       <h1>Post List Page</h1>
       <ul>
         {_isArray(posts) && _map(posts, post => (
-           <li key={post.id}>
-             <Link href={`/posts/${post.id}`}><a>{post?.title}</a></Link>
+           <li key={_get(post, 'id')}>
+             <Link href={`/posts/${_get(post, 'id')}`}><a>{_get(post, 'title')}</a></Link>
            </li>
         ))}
       </ul>
@@ -30,12 +34,12 @@ export default function PostListPage({ posts }: PostListPageProps){
 }
 
 export const getStaticProps: GetStaticProps<PostListPageProps> = async (context: GetStaticPropsContext) => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const res = await fetch('https://js-post-api.herokuapp.com/api/posts');
   const data = await res.json();
 
   return {
     props: {
-      posts: [...data]
+      posts: data,
     },
   }
 }
